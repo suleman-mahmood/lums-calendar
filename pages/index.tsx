@@ -1,16 +1,64 @@
-import EventCard from '../components/event-card';
-import Navbar from '../components/navbar';
+import { useEffect, useState } from "react";
+import DateDisplay from "../components/date";
+import EventCard from "../components/event-card";
+import Navbar from "../components/navbar";
+
+interface EventInterface {
+  startTime: String;
+  durationHours: undefined | number;
+  title: String;
+  description: String;
+  imageUrl: String;
+  tags: String;
+  host: String;
+  venue: String;
+}
 
 export default function Home() {
-	return (
-		<div>
-			<Navbar />
+  const [allDates, setAllDates] = useState<String[]>([]);
 
-			<div className='h-14'></div>
+  useEffect(() => {
+    const options = { month: "long", day: "numeric" };
+    const today = new Date();
 
-			{[1, 2, 3, 4, 5].map(i => {
-				return <EventCard />;
-			})}
-		</div>
-	);
+    const formattedDates = [];
+    formattedDates.push(today.toLocaleDateString("en-US", options));
+
+    for (let i = 0; i < 29; i++) {
+      today.setDate(today.getDate() + 1);
+      const resultDate = new Date(today);
+      formattedDates.push(resultDate.toLocaleDateString("en-US", options));
+    }
+
+    setAllDates(formattedDates);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-base-200">
+      <Navbar />
+
+      <div className="h-14"></div>
+
+      <DateDisplay date={allDates[0]} />
+
+      {[1, 2].map((i) => {
+        return (
+          <div className="mb-6" key={i}>
+            <EventCard />
+          </div>
+        );
+      })}
+
+      <DateDisplay date={allDates[1]} />
+      <DateDisplay date={allDates[2]} />
+
+      {[1].map((i) => {
+        return (
+          <div className="mb-6" key={i}>
+            <EventCard />
+          </div>
+        );
+      })}
+    </div>
+  );
 }

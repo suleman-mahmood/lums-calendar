@@ -1,16 +1,39 @@
+import Image from "next/image"
+import ArchImage from '../assets/mainEventsPic.jpg';
+
+import Swal from 'sweetalert2';
+
 export default function EventCard() {
-	return (
-		<div className='card w-96 bg-base-100 shadow-xl image-full'>
-			<figure>
-				<img src='https://placeimg.com/400/225/arch' alt='Shoes' />
-			</figure>
-			<div className='card-body'>
-				<h2 className='card-title'>Shoes!</h2>
-				<p>If a dog chews shoes whose shoes does he choose?</p>
-				<div className='card-actions justify-end'>
-					<button className='btn btn-primary'>Buy Now</button>
-				</div>
-			</div>
-		</div>
-	);
+	const showEventDescription = () => {
+
+		const cardHtml = `
+		<h1 class="text-xl mb-2">Debugging the startup space</h1>
+		<p class="text-sm">An interactive panel talk to gain unique insights</p>
+		`;
+
+		Swal.fire({
+			title: 'LWiC x Tajir!',
+			html: cardHtml,
+			imageUrl: 'https://unsplash.it/400/200',
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: 'Custom image',
+		  })
+	}
+
+
+  return (
+    <div onClick={showEventDescription} className="card h-32 mx-2 bg-base-100 shadow-xl image-full rounded-xl">
+      <figure>
+        <Image
+          src={ArchImage}
+          alt="Picture of the author"
+        />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title text-accent-content">LWiC x Tajir</h2>
+        <p className="text-primary-content">Discovering the startup space</p>
+      </div>
+    </div>
+  );
 }
