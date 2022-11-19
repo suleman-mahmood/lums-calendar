@@ -1,17 +1,16 @@
+import EventCard from '../components/event-card';
+import Navbar from '../components/navbar';
+
 export default function Home() {
 	return (
-		<div className='hero min-h-screen bg-base-200'>
-			<div className='hero-content text-center'>
-				<div className='max-w-md'>
-					<h1 className='text-5xl font-bold'>Hello there</h1>
-					<p className='py-6'>
-						Provident cupiditate voluptatem et in. Quaerat fugiat ut
-						assumenda excepturi exercitationem quasi. In deleniti
-						eaque aut repudiandae et a id nisi.
-					</p>
-					<button className='btn btn-primary'>Get Started</button>
-				</div>
-			</div>
+		<div>
+			<Navbar />
+
+			<div className='h-14'></div>
+
+			{[1, 2, 3, 4, 5].map(i => {
+				return <EventCard />;
+			})}
 		</div>
 	);
 }
