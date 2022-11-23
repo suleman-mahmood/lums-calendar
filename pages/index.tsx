@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DateDisplay from "../components/date";
 import EventCard from "../components/event-card";
 import Navbar from "../components/navbar";
+import Calendar from "./calendar-page";
 
 interface EventInterface {
   startTime: String;
@@ -40,6 +41,12 @@ export default function Home() {
       <div className="h-14"></div>
 
       <DateDisplay date={allDates[0]} />
+
+      <button
+      type="button"
+      onClick={Calendar}>
+        Calendar button
+      </button>
 
       {[1, 2].map((i) => {
         return (
